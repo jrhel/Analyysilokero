@@ -27,3 +27,10 @@ def query_database(query: str):
     result = database.execute(query).fetchall()
     database.close()
     return result[0]['username']
+
+def get_password_hash(username: str):
+    verify_database()
+    database = get_connection()
+    result = database.execute(f"SELECT password_hash FROM User WHERE username = '{username}'").fetchall()
+    database.close()
+    return result[0]['password_hash']

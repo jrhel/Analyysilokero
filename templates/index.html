@@ -7,16 +7,16 @@
 
   <body>
     <h1>Tervetuloa Analyysilokeroon!</h1>
-    <form action=" " method="post">
+    <form action="/sign_in" method="post">
       <fieldset>
       <legend>Kirjaudu</legend>
         <p>
           <label for="username">Nimimerkki:</label>
-          <input type="text" id="username"/>
+          <input type="text" id="username", name="username"/>
         </p>
         <p>
           <label for="password">Salasana:</label>
-          <input type="text" id="password"/>
+          <input type="text" id="password" name="password"/>
         </p>
         <p>
           <input type="submit" value="Kirjaudu" />

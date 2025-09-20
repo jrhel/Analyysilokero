@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>User page</title>
+  </head>
+
+  <body>
+    <p>Tervetuloa {{session.username}}! Tämä on oma sivusi.</p>
+    <form action="/sign_out" method="post">
+      <input type="submit" value="Kirjaudu ulos" />
+    </form>
+
+</html>
