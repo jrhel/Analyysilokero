@@ -56,7 +56,7 @@ pip install flask
 ```
 flask run
 ```
-4) Avaa sovelluksen käyttöliittymä selaimellasi ositteella:
+4) Avaa sovelluksen käyttöliittymä selaimeessasi ositteella:
 ```
 127.0.0.1:5000
 ```
