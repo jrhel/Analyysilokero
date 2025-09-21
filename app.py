@@ -60,9 +60,24 @@ def sign_out():
     # del session["username"]
     return redirect("/")
 
+@app.route("/new_analysis", methods=["POST"])
+def new_analysis():
+    print("NEW ANALYSIS")
+    question = request.form["new_analysis"]
+    database_access.insert("Analysis", "question", f"'{question}'")
+    print("ANALYSIS INSERTED")
+    session["question"] = question
+    return redirect("/analysis", code=307)
+
 @app.route("/new_hypothesis", methods=["POST"])
 def new_hypothesis():
+    print("NEW HYPO")
     new_hypothesis = request.form["new_hypothesis"]
+    analysis_id = database_access.get_value("Analysis", "id")
+    print("AANALYSIS ID =", analysis_id)
+    values = f"'{new_hypothesis}', '{str(analysis_id)}'"
+    database_access.insert("Hypothesis", "claim, analysis_id", values)
+    print("HYPO INSERTED")
     if "known_hypotheses" in session.keys():
         known_hypotheses = session["known_hypotheses"]
         known_hypotheses.append(new_hypothesis)
@@ -73,6 +88,8 @@ def new_hypothesis():
 
 @app.route("/analysis", methods=["POST"])
 def analysis():
+    if "question" not in session.keys():
+        session["question"] = "Uusi analyysi"
     known_hypotheses = []
     if "known_hypotheses" in session.keys():
         known_hypotheses = session["known_hypotheses"]
