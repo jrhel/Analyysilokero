@@ -7,8 +7,12 @@
 
   <body>
     <p>Tervetuloa {{session.username}}! Tämä on oma sivusi.</p>
+    <form action="/analysis" method="post">
+      <input type="submit" value="Luo uusi analyysi" />
+    </form>
     <form action="/sign_out" method="post">
       <input type="submit" value="Kirjaudu ulos" />
     </form>
+  <body>
 
 </html>

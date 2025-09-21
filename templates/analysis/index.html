@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Analysis</title>
+  </head>
+
+  <body>
+    <h2>Hypoteesit:</h2>
+    <ul>
+      {% for hypothesis in hypotheses %}
+      <li>{{ hypothesis }}</li>
+      {% endfor %}
+    </ul>
+    <form action="/new_hypothesis" method="post">
+      <p>
+        <label for="new_hypothesis">Uusi hypoteesi:</label>
+        <input type="text" id="new_hypothesis", name="new_hypothesis"/>
+      </p>
+      <input type="submit" value="Lisää hypoteesi" />
+    </form>
+    <form action="/user_page">
+      <input type="submit" value="Tallenna analyysi" />
+    </form>
+
+  </body>
+
+</html>
