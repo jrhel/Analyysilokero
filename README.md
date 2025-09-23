@@ -47,20 +47,24 @@ Analyysilokero on sovellus [kilpailevien hypoteesien analyysien](https://en.wiki
 ```
 git clone https://github.com/jrhel/Analyysilokero.git
 ```
-2) Luo hakemistoon Pythonin virtuaaliympäristön koomennolla a) Unix,                  /   b) Windows:
+2) Luo hakemistoon Pythonin virtuaaliympäristön koomennolla ( a) Unix / b) Windows):
 ```
-                                                               python3 -m venv venv   /      pip install virtualenv
+a) python3 -m venv venv   /   b) pip install virtualenv
 ```
-2) Asenna [flask](https://github.com/pallets/flask/tree/main)-kirjasto komennolla:
+3) Käynnistä virtuaaliympäristö koomennolla ( a) Unix / b) Windows):
+```
+a) source venv/bin/activate   /   b) venv\Scripts\activate.bat
+```
+4) Asenna [flask](https://github.com/pallets/flask/tree/main)-kirjasto komennolla:
 
 ```
 pip install flask
 ```
-3) Käynnistä sovellus komennolla:
+5) Käynnistä sovellus komennolla:
 ```
 flask run
 ```
-4) Avaa sovelluksen käyttöliittymä selaimeessasi ositteella:
+6) Avaa sovelluksen käyttöliittymä selaimeessasi ositteella:
 ```
 127.0.0.1:5000
 ```
