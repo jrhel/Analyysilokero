@@ -47,6 +47,10 @@ Analyysilokero on sovellus [kilpailevien hypoteesien analyysien](https://en.wiki
 ```
 git clone https://github.com/jrhel/Analyysilokero.git
 ```
+2) Luo hakemistoon Pythonin virtuaaliympäristön koomennolla a) Unix,                  /   b) Windows:
+```
+                                                               python3 -m venv venv   /      pip install virtualenv
+```
 2) Asenna [flask](https://github.com/pallets/flask/tree/main)-kirjasto komennolla:
 
 ```
