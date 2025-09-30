@@ -6,6 +6,7 @@ def get_connection():
     connection.row_factory = sqlite3.Row
     return connection
 
+# Verifies integrity of database
 def verify_database():
     user_table = "CREATE TABLE IF NOT EXISTS User (id integer PRIMARY KEY, username TEXT UNIQUE, password_hash TEXT)"
     analysis_table = "CREATE TABLE IF NOT EXISTS Analysis (id integer PRIMARY KEY, question TEXT)"
