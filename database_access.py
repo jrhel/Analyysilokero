@@ -20,11 +20,25 @@ def verify_database():
     database.commit()
     database.close()
 
+def execute(statement: str, params: [str]):
+    id = -1
+    connection = get_connection()
+    id = connection.execute(statement, params).lastrowid
+    connection.commit()
+    connection.close()
+    return id
+
+def query(statement: str, params: [str]):
+    connection = get_connection()
+    result = connection.execute(statement, params).fetchall()
+    connection.close()
+    return result
+
 def create_account(username: str, password_hash: str):
     verify_database()
     database = get_connection()
     values = f"'{username}', '{password_hash}'"
-    database.execute(f"INSERT INTO User (username, password_hash) VALUES ({values})")
+    database.execute("INSERT INTO User (username, password_hash) VALUES (?, ?)")
     database.commit()
     database.close()
 

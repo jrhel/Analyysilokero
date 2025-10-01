@@ -6,9 +6,11 @@ from flask import session
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 import database_access
+import logic
 
 app = Flask(__name__)
 app.secret_key = "17fa24cf6a2ad4dac44a43963dd2c43e"
+logic.initialize_logic()
 
 @app.route("/")
 def index():
@@ -41,10 +43,12 @@ def create_account():
     password2 = request.form["password2"]
     if password1 != password2:        
         return "Salasanat eivät täsmää!"
-    password_hash = generate_password_hash(password1)
-    database_access.create_account(username, password_hash)
-    result = database_access.query_database(f"SELECT username FROM User WHERE password_hash = '{password_hash}'")
-    if result == username:
+    logic.create_user(username, password1)
+
+    # password_hash = generate_password_hash(password1)
+    # database_access.create_account(username, password_hash)
+    #result = database_access.query_database(f"SELECT username FROM User WHERE password_hash = '{password_hash}'")
+    if True:
         session["username"] = username
         return redirect("/user_page")
     else:
