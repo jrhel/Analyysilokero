@@ -6,14 +6,24 @@
   </head>
 
   <body>
+    {% if session.question %}
     <h1>{{session.question}}</h1>
-    <form action="/new_analysis" method="post">
+      <form action="/update_analysis" method="post">
         <p>
-          <label for="new_analysis">Kysymys johon analyysi tulee vastata:</label>
-          <input type="text" id="new_analysis", name="new_analysis"/>
+          <label for="update_analysis">Muokkaa kysymystä:</label>
+          <input type="text" value={{session.question}} id="update_analysis", name="update_analysis"/>
         </p>
         <input type="submit" value="Aseta kysymys" />
       </form>
+    {% else %}
+    <h1>Aseta kysymys johon analyysi tulee vastata:</h1>
+      <form action="/new_analysis" method="post">
+        <p>
+          <input type="text" value="Kysymys" id="new_analysis", name="new_analysis"/>
+          <input type="submit" value="Aseta kysymys" />
+        </p>
+      </form>
+    {% endif %}
     <fieldset>
       <legend>Hypoteesit</legend>
       <ul>

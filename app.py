@@ -5,7 +5,7 @@ from flask import redirect
 from flask import session
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
-import database_access
+import db_connection_handler
 import logic
 
 app = Flask(__name__)
@@ -31,6 +31,12 @@ def sign_in():
     else:
         return "Sign-in information was incorrect."
 
+@app.route("/sign_out", methods=["POST"])
+def sign_out():
+    session.clear()
+    # del session["username"]
+    return redirect("/")
+
 @app.route("/sign_up")
 def sign_up():
 
@@ -41,42 +47,55 @@ def create_account():
     username = request.form["username"]
     password1 = request.form["password1"]
     password2 = request.form["password2"]
+    print("UI: Create account for:", username)
     if password1 != password2:        
         return "Salasanat eivät täsmää!"
-    logic.create_user(username, password1)
-
-    # password_hash = generate_password_hash(password1)
-    # database_access.create_account(username, password_hash)
-    #result = database_access.query_database(f"SELECT username FROM User WHERE password_hash = '{password_hash}'")
-    if True:
+    if logic.create_user(username, password1):
         session["username"] = username
+        print("UI: Account created for:", username)
         return redirect("/user_page")
     else:
         return "Successfull sign-up could not be verified from the database."
-    
+
 @app.route("/user_page")
 def user_page():
     return render_template("user_page/index.html")
 
-@app.route("/sign_out", methods=["POST"])
-def sign_out():
-    session.clear()
-    # del session["username"]
-    return redirect("/")
+@app.route("/analysis", methods=["POST"])
+def analysis():
+    print("Open analysis page...")
+    # if "question" not in session.keys():
+    #    session["question"] = "Uusi analyysi"
+    known_hypotheses = []
+    if "known_hypotheses" in session.keys():
+        known_hypotheses = session["known_hypotheses"]
+    return render_template("analysis/index.html", hypotheses=known_hypotheses)
 
 @app.route("/new_analysis", methods=["POST"])
 def new_analysis():
+    print("Asked to create new analysis...")
     question = request.form["new_analysis"]
-    database_access.insert("Analysis", "question", f"'{question}'")
+    logic.create_analysis(question, session["username"])
+    print("GUI: Analysis should exist.")
+    # db_connection_handler.insert("Analysis", "question", f"'{question}'")
     session["question"] = question
+    return redirect("/analysis", code=307)
+
+@app.route("/update_analysis", methods=["POST"])
+def update_analysis():
+    print("GUI: ASked to update question...")
+    new_question = request.form["update_analysis"]
+    if logic.update_analysis(session["question"], new_question, session["username"]):
+        print("GUI: question updated")
+        session["question"] = new_question
     return redirect("/analysis", code=307)
 
 @app.route("/new_hypothesis", methods=["POST"])
 def new_hypothesis():
     new_hypothesis = request.form["new_hypothesis"]
-    analysis_id = database_access.get_value("Analysis", "id")
+    analysis_id = db_connection_handler.get_value("Analysis", "id")
     values = f"'{new_hypothesis}', '{str(analysis_id)}'"
-    database_access.insert("Hypothesis", "claim, analysis_id", values)
+    db_connection_handler.insert("Hypothesis", "claim, analysis_id", values)
     if "known_hypotheses" in session.keys():
         known_hypotheses = session["known_hypotheses"]
         known_hypotheses.append(new_hypothesis)
@@ -85,11 +104,4 @@ def new_hypothesis():
         session["known_hypotheses"] = [new_hypothesis]
     return redirect("/analysis", code=307)
 
-@app.route("/analysis", methods=["POST"])
-def analysis():
-    if "question" not in session.keys():
-        session["question"] = "Uusi analyysi"
-    known_hypotheses = []
-    if "known_hypotheses" in session.keys():
-        known_hypotheses = session["known_hypotheses"]
-    return render_template("analysis/index.html", hypotheses=known_hypotheses)
+
