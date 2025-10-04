@@ -47,12 +47,10 @@ def create_account():
     username = request.form["username"]
     password1 = request.form["password1"]
     password2 = request.form["password2"]
-    print("UI: Create account for:", username)
     if password1 != password2:        
         return "Salasanat eivät täsmää!"
     if logic.create_user(username, password1):
         session["username"] = username
-        print("UI: Account created for:", username)
         return redirect("/user_page")
     else:
         return "Successfull sign-up could not be verified from the database."
@@ -63,9 +61,6 @@ def user_page():
 
 @app.route("/analysis", methods=["POST"])
 def analysis():
-    print("Open analysis page...")
-    # if "question" not in session.keys():
-    #    session["question"] = "Uusi analyysi"
     known_hypotheses = []
     if "known_hypotheses" in session.keys():
         known_hypotheses = session["known_hypotheses"]
@@ -73,20 +68,15 @@ def analysis():
 
 @app.route("/new_analysis", methods=["POST"])
 def new_analysis():
-    print("Asked to create new analysis...")
     question = request.form["new_analysis"]
     logic.create_analysis(question, session["username"])
-    print("GUI: Analysis should exist.")
-    # db_connection_handler.insert("Analysis", "question", f"'{question}'")
     session["question"] = question
     return redirect("/analysis", code=307)
 
 @app.route("/update_analysis", methods=["POST"])
 def update_analysis():
-    print("GUI: ASked to update question...")
     new_question = request.form["update_analysis"]
     if logic.update_analysis(session["question"], new_question, session["username"]):
-        print("GUI: question updated")
         session["question"] = new_question
     return redirect("/analysis", code=307)
 

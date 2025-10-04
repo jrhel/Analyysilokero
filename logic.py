@@ -25,6 +25,8 @@ def create_analysis(question: str, username: str):
     analysisDAO.create_analysis(question, username)
     print("Logic: Analysis should now exist.")
 
+# Sends a question to be updated to a new one for a specific user.
+# Returns True if saved question maches new intended one, else False.
 def update_analysis(old_question: str, new_question: str, username: str):
     print("Logic: Update", old_question, "TO", new_question, "FOR", username)
     if analysisDAO.update_question(old_question, new_question, username) == new_question:

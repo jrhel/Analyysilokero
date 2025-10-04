@@ -23,12 +23,10 @@ def verify_database():
 # Executes provided SQL-"statement" with "params" as its values,
 # & returns id of the executed row or -1 if ewxecution failed.
 def execute(statement: str, params: [str]):
-    id = "-1"
     connection = get_connection()
-    id = connection.execute(statement, params).lastrowid
+    connection.execute(statement, params)
     connection.commit()
     connection.close()
-    return id
 
 def query(statement: str, params: [str]):
     connection = get_connection()
