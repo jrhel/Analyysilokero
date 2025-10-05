@@ -6,7 +6,8 @@ def create_user(username: str, password_hash: str):
     print("UserDAO: Create account for:", username)
     params = [username, password_hash]
     id = db_connection_handler.execute("INSERT INTO User (username, password_hash) VALUES (?, ?)", params)
-    print("UserDAO: Result:", get_user("id", id))
+    print("UserDAO: id", id, type(id))
+    print("UserDAO: Result:", get_user("id", id)[1])
     return get_user("id", id)[1]
 
 # Queries the db_connection_handler for user information based on column specific value in "User"-table in database

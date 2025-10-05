@@ -17,9 +17,9 @@
       </form>
     {% else %}
     <h1>Aseta kysymys johon analyysi tulee vastata:</h1>
-      <form action="/new_analysis" method="post">
+      <form action="/new_question" method="post">
         <p>
-          <input type="text" value="Kysymys" id="new_analysis", name="new_analysis"/>
+          <input type="text" value="Kysymys" id="new_question", name="new_question"/>
           <input type="submit" value="Aseta kysymys" />
         </p>
       </form>
@@ -38,11 +38,11 @@
         </p>
         <input type="submit" value="Aseta uusi hypoteesi" />
       </form>
-      <form action="/user_page">
-        <input type="submit" value="Tallenna analyysi" />
-      </form>
     </fieldset>
-
+    
+    <form action="/user_page">
+      <input type="submit" value="Lopeta tarkastelu" />
+    </form>
   </body>
 
 </html>

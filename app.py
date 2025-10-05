@@ -57,6 +57,8 @@ def create_account():
 
 @app.route("/user_page")
 def user_page():
+    if "question" in session:
+        del session["question"]
     return render_template("user_page/index.html")
 
 @app.route("/analysis", methods=["POST"])
@@ -66,9 +68,9 @@ def analysis():
         known_hypotheses = session["known_hypotheses"]
     return render_template("analysis/index.html", hypotheses=known_hypotheses)
 
-@app.route("/new_analysis", methods=["POST"])
+@app.route("/new_question", methods=["POST"])
 def new_analysis():
-    question = request.form["new_analysis"]
+    question = request.form["new_question"]
     logic.create_analysis(question, session["username"])
     session["question"] = question
     return redirect("/analysis", code=307)
@@ -83,15 +85,19 @@ def update_analysis():
 @app.route("/new_hypothesis", methods=["POST"])
 def new_hypothesis():
     new_hypothesis = request.form["new_hypothesis"]
-    analysis_id = db_connection_handler.get_value("Analysis", "id")
-    values = f"'{new_hypothesis}', '{str(analysis_id)}'"
-    db_connection_handler.insert("Hypothesis", "claim, analysis_id", values)
-    if "known_hypotheses" in session.keys():
-        known_hypotheses = session["known_hypotheses"]
-        known_hypotheses.append(new_hypothesis)
-        session["known_hypotheses"] = known_hypotheses
-    else:
-        session["known_hypotheses"] = [new_hypothesis]
+    if logic.set_hypothesis(new_hypothesis, session["question"], session["username"]):
+
+        if "known_hypotheses" in session.keys():
+            known_hypotheses = session["known_hypotheses"]
+            known_hypotheses.append(new_hypothesis)
+            session["known_hypotheses"] = known_hypotheses
+        else:
+            session["known_hypotheses"] = [new_hypothesis]
+            
+    # analysis_id = db_connection_handler.get_value("Analysis", "id")
+    # values = f"'{new_hypothesis}', '{str(analysis_id)}'"
+    # db_connection_handler.insert("Hypothesis", "claim, analysis_id", values)
+    
     return redirect("/analysis", code=307)
 
 

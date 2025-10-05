@@ -20,13 +20,14 @@ def verify_database():
     database.commit()
     database.close()
 
-# Executes provided SQL-"statement" with "params" as its values,
-# & returns id of the executed row or -1 if ewxecution failed.
+# Executes provided SQL-"statement" with "params" as its values.
+# Returnes id for last row inserted, or 0 for other methods.
 def execute(statement: str, params: [str]):
     connection = get_connection()
-    connection.execute(statement, params)
+    row_id = connection.execute(statement, params).lastrowid
     connection.commit()
     connection.close()
+    return row_id
 
 def query(statement: str, params: [str]):
     connection = get_connection()

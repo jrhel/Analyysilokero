@@ -2,6 +2,7 @@ from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 import userDAO
 import analysisDAO
+import hyphotesisDAO
 import db_connection_handler
 
 def initialize_logic():
@@ -33,3 +34,8 @@ def update_analysis(old_question: str, new_question: str, username: str):
         return True
     else: 
         return False
+
+def set_hypothesis(new_hypothesis: str, question: str, username: str):
+    admin_id = userDAO.get_user("username", username)[0]
+    analysis_id = analysisDAO.get_pk(question, admin_id)
+    return hyphotesisDAO.create_hypothesis(new_hypothesis, analysis_id)
