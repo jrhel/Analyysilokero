@@ -93,11 +93,27 @@ def new_hypothesis():
             session["known_hypotheses"] = known_hypotheses
         else:
             session["known_hypotheses"] = [new_hypothesis]
-            
+
     # analysis_id = db_connection_handler.get_value("Analysis", "id")
     # values = f"'{new_hypothesis}', '{str(analysis_id)}'"
     # db_connection_handler.insert("Hypothesis", "claim, analysis_id", values)
     
     return redirect("/analysis", code=307)
 
+@app.route("/new_evidence", methods=["POST"])
+def new_evidence():
+    return render_template("evidence/index.html")
 
+@app.route("/save_evidence", methods=["POST"])
+def save_evidence():
+    evidence = request.form["new_evidence"]
+    source = request.form["new_source"]
+    new_evidence = (evidence, source)
+    if logic.set_evidence(evidence, source, session["question"], session["username"]):
+        if "known_evidence" in session.keys():
+            known_evidence = session["known_evidence"]
+            known_evidence.append(new_evidence)
+            session["known_evidence"] = known_evidence
+        else:
+            session["known_evidence"] = [new_evidence]
+    return redirect("/analysis", code=307)

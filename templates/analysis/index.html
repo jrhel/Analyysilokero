@@ -39,6 +39,18 @@
         <input type="submit" value="Aseta uusi hypoteesi" />
       </form>
     </fieldset>
+
+    <fieldset>
+      <legend>Todisteet</legend>
+      <ul>
+        {% for piece_of_evidence in evidence %}
+        <li>{{ piece_of_evidence }}</li>
+        {% endfor %}
+      </ul>
+      <form action="/new_evidence" method="post">
+        <input type="submit" value="Lisää uusi todiste" />
+      </form>
+    </fieldset>
     
     <form action="/user_page">
       <input type="submit" value="Lopeta tarkastelu" />

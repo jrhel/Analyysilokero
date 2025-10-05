@@ -3,6 +3,7 @@ from werkzeug.security import check_password_hash
 import userDAO
 import analysisDAO
 import hyphotesisDAO
+import evidenceDAO
 import db_connection_handler
 
 def initialize_logic():
@@ -39,3 +40,9 @@ def set_hypothesis(new_hypothesis: str, question: str, username: str):
     admin_id = userDAO.get_user("username", username)[0]
     analysis_id = analysisDAO.get_pk(question, admin_id)
     return hyphotesisDAO.create_hypothesis(new_hypothesis, analysis_id)
+
+def set_evidence(evidence: str, source: str, question: str, username: str):
+    admin_id = userDAO.get_user("username", username)[0]
+    analysis_id = analysisDAO.get_pk(question, admin_id)
+    return evidenceDAO.create_evidence(evidence, source, analysis_id)
+

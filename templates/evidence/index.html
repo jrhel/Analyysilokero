@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Evidence</title>
+  </head>
+
+  <body>
+    {% if old_evidence %}
+    <h1>Tarkastele todiste:</h1>
+    <form action="/update_evidence" method="post">
+      <p>
+        <label for="evidence">Todiste:</label>
+        <input type="text" id="evidence", value="{{ old_evidence }}", name="evidence"/>
+      </p>
+      <p>
+        <label for="source">Lähde:</label>
+        <input type="text" id="source", value="{{ old_source }}", name="source"/>
+      </p>
+      <input type="submit" value="Tallenna" />
+    </form>
+    {% else %}
+    <h1>Lisää todiste:</h1>
+    <form action="/save_evidence" method="post">
+      <p>
+        <label for="new_evidence">Todiste:</label>
+        <input type="text" id="new_evidence", name="new_evidence"/>
+      </p>
+      <p>
+        <label for="new_source">Lähde:</label>
+        <input type="text" id="new_source", name="new_source"/>
+      </p>
+      <input type="submit" value="Lisää todiste analyysiin" />
+    </form>
+    {% endif %}
+  </body>
+
+</html>
