@@ -6,7 +6,6 @@
   </head>
 
   <body>
-    {% if old_evidence %}
     <h1>Tarkastele todiste:</h1>
     <form action="/update_evidence" method="post">
       <p>
@@ -19,20 +18,6 @@
       </p>
       <input type="submit" value="Tallenna" />
     </form>
-    {% else %}
-    <h1>Lisää todiste:</h1>
-    <form action="/save_evidence" method="post">
-      <p>
-        <label for="new_evidence">Todiste:</label>
-        <input type="text" id="new_evidence", name="new_evidence"/>
-      </p>
-      <p>
-        <label for="new_source">Lähde:</label>
-        <input type="text" id="new_source", name="new_source"/>
-      </p>
-      <input type="submit" value="Lisää todiste analyysiin" />
-    </form>
-    {% endif %}
   </body>
 
 </html>

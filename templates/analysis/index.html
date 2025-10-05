@@ -44,7 +44,12 @@
       <legend>Todisteet</legend>
       <ul>
         {% for piece_of_evidence in evidence %}
-        <li>{{ piece_of_evidence }}</li>
+        <li>
+          <form action="/update_hypothesis" method="post">
+            <input type="submit" value="Muokkaa" />
+            {{ piece_of_evidence[0] }}
+          </form>
+        </li>
         {% endfor %}
       </ul>
       <form action="/new_evidence" method="post">

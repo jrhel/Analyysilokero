@@ -66,7 +66,10 @@ def analysis():
     known_hypotheses = []
     if "known_hypotheses" in session.keys():
         known_hypotheses = session["known_hypotheses"]
-    return render_template("analysis/index.html", hypotheses=known_hypotheses)
+    known_evidence = []
+    if "known_evidence" in session.keys():
+        known_evidence = session["known_evidence"]
+    return render_template("analysis/index.html", hypotheses=known_hypotheses, evidence=known_evidence)
 
 @app.route("/new_question", methods=["POST"])
 def new_analysis():
@@ -101,7 +104,11 @@ def new_hypothesis():
     return redirect("/analysis", code=307)
 
 @app.route("/new_evidence", methods=["POST"])
-def new_evidence():
+def new_evidence():    
+    return render_template("new_evidence/index.html")
+
+@app.route("/update_evidence", methods=["POST"])
+def update_evidence():    
     return render_template("evidence/index.html")
 
 @app.route("/save_evidence", methods=["POST"])
