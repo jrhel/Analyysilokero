@@ -42,7 +42,7 @@ Analyysilokero on sovellus [kilpailevien hypoteesien analyysien](https://en.wiki
 - Skenaarioiden kirjoittaminen analyysin perusteella.
 - Analyysien versionhallinta.
 
-## Sovelluksen asennus & käynnistys:
+## Sovelluksen asennus:
 1) Mene komentorivillä hakemistoon johon haluat asentaa sovelluksen, ja lataa se lomennolla:
 ```
 git clone https://github.com/jrhel/Analyysilokero.git
@@ -60,11 +60,17 @@ a) source venv/bin/activate   /   b) venv\Scripts\activate.bat
 ```
 pip install flask
 ```
-5) Käynnistä sovellus komennolla:
+
+## Sovelluksen käynnistys:
+1) Käynnistä virtuaaliympäristö, jos se ei ole jo käynnissä, koomennolla ( a) Unix / b) Windows):
+```
+a) source venv/bin/activate   /   b) venv\Scripts\activate.bat
+```
+2) Käynnistä sovellus komennolla:
 ```
 flask run
 ```
-6) Avaa sovelluksen käyttöliittymä selaimeessasi ositteella:
+3) Avaa sovelluksen käyttöliittymä selaimeessasi ositteella:
 ```
 127.0.0.1:5000
 ```
