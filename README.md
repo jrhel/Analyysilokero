@@ -51,7 +51,7 @@ git clone https://github.com/jrhel/Analyysilokero.git
 ```
 a) python3 -m venv venv   /   b) pip install virtualenv
 ```
-3) Käynnistä virtuaaliympäristö koomennolla ( a) Unix / b) Windows):
+3) Käynnistä virtuaaliympäristö komennolla ( a) Unix / b) Windows):
 ```
 a) source venv/bin/activate   /   b) venv\Scripts\activate.bat
 ```
