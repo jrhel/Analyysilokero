@@ -45,8 +45,9 @@
       <ul>
         {% for piece_of_evidence in evidence %}
         <li>
-          <form action="/update_hypothesis" method="post">
-            <input type="submit" value="Muokkaa" />
+          <form action="/update_evidence" method="post">
+            <input type="hidden" name="evidence_id" value="{{ piece_of_evidence[0] }}">
+            <input type="submit" value="Muokkaa:"/>
             {{ piece_of_evidence[0] }}
           </form>
         </li>

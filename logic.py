@@ -46,3 +46,14 @@ def set_evidence(evidence: str, source: str, question: str, username: str):
     analysis_id = analysisDAO.get_pk(question, admin_id)
     return evidenceDAO.create_evidence(evidence, source, analysis_id)
 
+def get_source(evidence: str, question: str, username: str):
+    admin_id = userDAO.get_user("username", username)[0]
+    analysis_id = analysisDAO.get_pk(question, admin_id)
+    return evidenceDAO.get_source(analysis_id, evidence)
+
+def update_evidence(username: str, question: int, new_observation: str, old_observation: str):
+    admin_id = userDAO.get_user("username", username)[0]
+    analysis_id = analysisDAO.get_pk(question, admin_id)
+    source = "?"
+    evidenceDAO.update_evidence(new_observation, source, old_observation, analysis_id)
+

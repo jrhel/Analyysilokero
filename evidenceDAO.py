@@ -14,13 +14,22 @@ def get_evidence(analysis_id: int):
     info = get_evidence_info(analysis_id)
     evidence = []
     for row in info:
-        print("Everow:", row)
         evidence.append(row[1])
     print("EVES: ", evidence)
     return evidence
+
+def get_source(analysis_id: int, evidence: str):
+    params = [analysis_id, evidence]
+    source = db_connection_handler.query("SELECT source FROM Evidence WHERE analysis_id = ? AND observation = ?", params)[0][0]
+    return source
+
 
 def get_evidence_info(analysis_id: int):
     params = [analysis_id]
     result = db_connection_handler.query("SELECT * FROM Evidence WHERE analysis_id = ?", params)
     print("Found H:", result)
     return result
+
+def update_evidence(new_observation: str, source: str, old_observation: str, analysis_id: int):
+    params = [new_observation, source, old_observation, analysis_id]
+    db_connection_handler.execute("UPDATE Evidence SET observation = ?, source = ? WHERE observation = ? AND analysis_id = ?", params)

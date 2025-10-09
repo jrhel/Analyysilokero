@@ -108,7 +108,13 @@ def new_evidence():
     return render_template("new_evidence/index.html")
 
 @app.route("/update_evidence", methods=["POST"])
-def update_evidence():    
+def update_evidence():
+    print("Triggered UPDATE_EVIDENCE")
+    evidence = request.form.get("evidence_id")
+    print("PAINOIT:", evidence)
+    session["old_evidence"] = evidence
+    source = logic.get_source(evidence, session["question"], session["username"])
+    print("SOURCE:", source)
     return render_template("evidence/index.html")
 
 @app.route("/save_evidence", methods=["POST"])
