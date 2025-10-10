@@ -6,7 +6,7 @@ Analyysilokero on sovellus [kilpailevien hypoteesien analyysien](https://en.wiki
 3) Etsi jokaiselle hypoteesille todisteida jotka ovat ristiriidassa tämän kanssa, sekä kaikenlaista muuta asiaan littyvää tietoa;
 4) Muodosta Hypoteeseistä ja todisteista taulukko, johon jompikumpi tulee pystyriville ja toinen vaakariville;
 5) Arvioi jokaisen hypoteesin osalta miten jokainen kerätty todiste tukee tämän, esim. +1 jos tukee tai -2 jos on erittäin painava ristiriidassa oleva todiste, tai 0 jos sillä ei ole vaikutusta kyseiseen hypoteesiin, ja kirjaa arviot taulukkoon;
-6) Laske yhteen tulokset, ja varsinaisesti erikseen ns. "miinuspisteet", ja valitse hypoteesi joka osoittautuu vähiten epätodennäköisemmäksi.
+6) Laske jokaiselle hypoteesille yhteen arvioinnin tulokset, ja niille erikseen pelkät ns. "miinuspisteet", ja valitse hypoteesi joka osoittautuu vähiten epätodennäköisemmäksi.
 
    
 ## Toteutetut toiminnot:
