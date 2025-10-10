@@ -1,6 +1,6 @@
 # Analyysilokero
 
-Analyysilokero on sovellus [kilpailevien hypoteesien analyysien](https://en.wikipedia.org/wiki/Analysis_of_competing_hypotheses) tekemiselle yhdessä ja/tai ryhmissä. Sovelluksessa käyttäjät laativat analyyseilleen hypoteesit, tallentavat löytämiään todisteita, laativat analyysejä näiden perusteella, sekä pystyvät selailemaan tallennettuja todisteita ja laadittuja analyysejä lokeroidusti. Sovellus ei opeta kilpailevien hypoteesien analyysien tekemistä, mutta sen tarkoituksena on asoiden analysoiminen järjestelmällisesti ja vähentää vinoumia lyhyesti seuraavasti:
+Analyysilokero on sovellus [kilpailevien hypoteesien analyysien](https://en.wikipedia.org/wiki/Analysis_of_competing_hypotheses) tekemiselle yhdessä ja/tai ryhmissä. Sovelluksessa käyttäjät laativat analyyseilleen hypoteesit, tallentavat löytämiään todisteita, laativat analyysejä näiden perusteella, sekä pystyvät selailemaan tallennettuja todisteita ja laadittuja analyysejä lokeroidusti. Sovellus ei opeta kilpailevien hypoteesien analyysien tekemistä, mutta sen tarkoituksena on asoiden analysoiminen järjestelmällisesti ja siinä vinoumien vähentäminen seuraavasti:
 1) Muodosta kysymys;
 2) Aseta toisiaan poissulkevia hypoteesejä jotka itsessään vastaisivat kysymykseen niin että yhdessä ne kattavat kaikki mahdollisuudet;
 3) Etsi jokaiselle hypoteesille todisteida jotka ovat ristiriidassa tämän kanssa, sekä kaikenlaista muuta asiaan littyvää tietoa;
