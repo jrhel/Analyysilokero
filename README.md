@@ -10,10 +10,10 @@ Analyysilokero on sovellus [kilpailevien hypoteesien analyysien](https://en.wiki
 
    
 ## Toteutetut toiminnot:
-- Käyttäjä pystyy luomaan tunnuksen ja kirjautumaan sisään analyysilokeroon.- 
-- Käyttäjä voi luoda uuden analyysin.
-- Käyttäjä pystyy lisämään hypoteesejä analyyseihin.- 
-- Käyttäjä pystyy lisäämään todisteita analyysilokeroon ja analyyseihin.
+- Käyttäjä pystyy luomaan tunnuksen ja kirjautumaan sisään analyysilokeroon;
+- Käyttäjä voi luoda uuden analyysin;
+- Käyttäjä pystyy lisämään hypoteesejä analyyseihin;
+- Käyttäjä pystyy lisäämään todisteita analyysilokeroon ja analyyseihin;
 
 ## Toteutettavat toiminnot:
 - Käyttäjä pystyy luomaan ryhmän ja kuuluvat ryhmätunnukset.
