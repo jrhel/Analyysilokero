@@ -115,7 +115,7 @@ def update_evidence():
     session["old_evidence"] = evidence
     source = logic.get_source(evidence, session["question"], session["username"])
     print("SOURCE:", source)
-    return render_template("evidence/index.html")
+    return render_template("evidence/index.html", old_evidence=evidence , old_source=source)
 
 @app.route("/save_evidence", methods=["POST"])
 def save_evidence():
